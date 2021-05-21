@@ -7,7 +7,7 @@
       gpgcheck: no
     
   - package:
-      name: "docker-ce-18.06.3.ce-3.el7.x86_64"
+      name: "docker-ce"
       state: present
 
   - service:
