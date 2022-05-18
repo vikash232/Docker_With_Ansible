@@ -3,9 +3,13 @@
   - yum_repository:
       description: "Docker Yum repo"
       name: "Docker_repo"
-      baseurl: "https://download.docker.com/linux/centos/7/x86_64/stable/"
+      baseurl: "https://download.docker.com/linux/centos/8/x86_64/stable/"
       gpgcheck: no
     
+  - package:
+      name: "containerd"
+      state: present
+      
   - package:
       name: "docker-ce"
       state: present
@@ -17,14 +21,16 @@
 
   - name: install docker with pip
     command: pip3 install docker
-
+ 
   - file:
       state: directory
-      path: "/webserver"
-
+      path: "/webserver" 
+      
+     
   - copy:
-      src: "mywebpage.html"
-      dest: "/webserver"
+      dest: "/webserver/mywebpage.html"
+      content: "this is my web site\n"
+
 
   - docker_image:
       name: "httpd:latest"
